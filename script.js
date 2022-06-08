@@ -1,5 +1,5 @@
 function computerPlay() {
-    let randomOne = Math.floor(Math.random() * (4 - 1) ) + 1;
+    let randomOne = Math.floor(Math.random() * 3) + 1;
     if(randomOne == 1) {
         return `rock`;
     }
@@ -11,48 +11,66 @@ function computerPlay() {
     }
 }
 
+
+
 let countPlayer = 0;
 let countComputer = 0;
 
 function playOneRound (playerSelection, computerSelection) {
 
-    let playerSelectionDown = playerSelection.toLowerCase();
-
-    if (playerSelectionDown === `rock` && computerSelection === `scissors`) {
+    if (playerSelection == `rock` && computerSelection == `scissors`) {
         countPlayer++;
-        return `You Win! Rock beats Scissors.`;
+        return `You Win! Rock beats Scissors. You: ${countPlayer} Computer: ${countComputer}`;
     }
 
-    else if (playerSelectionDown === `paper` && computerSelection === `rock`) {
+    else if (playerSelection == `paper` && computerSelection == `rock`) {
         countPlayer++;
-        return `You Win! Paper beats Rock.`;
+        return `You Win! Paper beats Rock. You: ${countPlayer} Computer: ${countComputer}`;
     }
 
-    else if (playerSelectionDown === `scissors` && computerSelection === `paper`) {
+    else if (playerSelection == `scissors` && computerSelection == `paper`) {
         countPlayer++;
-        return `You Win! Scissors beats Paper.`;
+        return `You Win! Scissors beats Paper. You: ${countPlayer} Computer: ${countComputer}`;
     }
 
-    else if (playerSelectionDown === `scissors` && computerSelection === `rock`) {
+    else if (playerSelection == `scissors` && computerSelection == `rock`) {
         countComputer++;
-        return `You Lose! Rock beats Scissors.`;
+        return `You Lose! Rock beats Scissors. You: ${countPlayer} Computer: ${countComputer}`;
     }
 
-    else if (playerSelectionDown === `rock` && computerSelection === `paper`) {
+    else if (playerSelection == `rock` && computerSelection == `paper`) {
         countComputer++;
-        return `You Lose! Paper beats Rock.`;
+        return `You Lose! Paper beats Rock. You: ${countPlayer} Computer: ${countComputer}`;
     }
 
-    else if (playerSelectionDown === `paper` && computerSelection === `scissors`) {
+    else if (playerSelection == `paper` && computerSelection == `scissors`) {
         countComputer++;
-        return `You Lose! Scissors beats Paper.`;
-    }
-
-    else if (playerSelectionDown !== `rock` && playerSelectionDown !== `paper` && playerSelectionDown !== `scissors`) {
-        isValid = false;
+        return `You Lose! Scissors beats Paper. You: ${countPlayer} Computer: ${countComputer}`;
     }
 
     else {
-        return `It is a draw!`;
+        return `It is a draw!  You: ${countPlayer} Computer: ${countComputer}`;
+    }
+}
+
+function game() {
+
+        let computerSelection = computerPlay();
+        let playerSelection = ``;
+
+
+        console.log(`You: ${playerSelection}`);
+        console.log(`Computer: ${computerSelection}`);
+        console.log(`Result: ${playOneRound(playerSelection, computerSelection)}`);
+    
+
+    if (countPlayer > countComputer) {
+        console.log(`Final Result: It is ${countPlayer} to ${countComputer}. You Win!`);
+    }
+    else if (countComputer > countPlayer) {
+        console.log(`Final Result: It is ${countComputer} to ${countPlayer}. You Lose!`);
+    }
+    else {
+        console.log(`Final Result: It is a draw!`);
     }
 }
